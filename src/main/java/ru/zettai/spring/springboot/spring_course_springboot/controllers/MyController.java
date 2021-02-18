@@ -1,9 +1,7 @@
 package ru.zettai.spring.springboot.spring_course_springboot.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import ru.zettai.spring.springboot.spring_course_springboot.entities.Employee;
 import ru.zettai.spring.springboot.spring_course_springboot.services.EmployeeService;
 
@@ -20,5 +18,27 @@ public class MyController {
     public List<Employee> getAllEmployees(){
         List<Employee> allEmployees = employeeService.getAllEmployees();
         return allEmployees;
+    }
+
+    @GetMapping("/employees/{id}")
+    public Employee getEmployee(@PathVariable("id") int id){
+        return employeeService.getEmployeeById(id);
+    }
+
+    @PostMapping("/employees")
+    public Employee addNewEmployee(@RequestBody Employee employee){
+        employeeService.saveOrUpdateEmployee(employee);
+        return employee;
+    }
+
+    @PutMapping("/employees")
+    public Employee updateEmployee(@RequestBody Employee employee){
+        employeeService.saveOrUpdateEmployee(employee);
+        return employee;
+    }
+
+    @DeleteMapping("/employees/{id}")
+    public void deleteEmployee(@PathVariable("id") int id){
+        employeeService.deleteEmployeeById(id);
     }
 }

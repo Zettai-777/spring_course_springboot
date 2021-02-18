@@ -21,17 +21,20 @@ public class EmployeeServiceImpl implements EmployeeService{
     }
 
     @Override
+    @Transactional
     public void saveOrUpdateEmployee(Employee employee) {
-
+        employeeDAO.saveOrUpdateEmployee(employee);
     }
 
     @Override
+    @Transactional
     public Employee getEmployeeById(int id) {
-        return null;
+        return employeeDAO.getEmployeeById(id);
     }
 
     @Override
+    @Transactional
     public void deleteEmployeeById(int id) {
-
+        employeeDAO.deleteEmployeeById(id);
     }
 }
